@@ -13,13 +13,14 @@
 			modelValue: { type: Number, default: 0 }
 		},
 		emits: ["update:modelValue"],
-		methods: {
-			plus() {
-				this.$emit("update:modelValue", this.modelValue + 1)
-			},
-			minus() {
-				this.$emit("update:modelValue", this.modelValue - 1)
+		setup(props, { emit }) {
+			const plus = () => {
+				emit("update:modelValue", props.modelValue + 1)
 			}
+			const minus = () => {
+				emit("update:modelValue", props.modelValue - 1)
+			}
+			return { plus, minus }
 		}
 	})
 </script>
