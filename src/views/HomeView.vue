@@ -1,15 +1,21 @@
 <script lang="ts">
-	import { defineComponent } from "vue"
+	import { defineComponent, provide, reactive } from "vue"
 	// import TheWelcome from "@/components/TheWelcome.vue"
 	import NumberPicker from "@/components/NumberPicker.vue"
 	import counterVue from "@/components/counter.vue"
 	import Card from "@/components/Card.vue"
+	import UserCard from "../components/userCard.vue"
 	export default defineComponent({
 		name: "Home",
 		components: {
 			NumberPicker,
 			counterVue,
-			Card
+			Card,
+			UserCard
+		},
+		setup() {
+			const userInfo = reactive({ firstName: "Hasan", lastName: "Hadavi" })
+			provide("user-info", userInfo)
 		},
 		data() {
 			return { counter: 0 }
@@ -30,7 +36,10 @@
 				{{ counter }}
 				<button>submit</button>
 				<button>info</button>
+				<br />
 			</template>
 		</card>
+		<br />
+		<user-card></user-card>
 	</main>
 </template>
